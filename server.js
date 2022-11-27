@@ -5,27 +5,23 @@ const PORT = 8000;
 // middlewares
 app.use(express.json());
 
+// routers
 import taskRouter from "./src/routers/taskRouter.js";
 
-app.use("/api/v1/tasks", taskRouter);
-//handle all uncaught router request
-app.use("*", (res, req) => {
-  //   res.statusCode(400).json({
-  //     status: "error",
-  //     message: " 404 page not found",
-  //   });
-  // });
-  const error = {
-    status: "error",
-    message: " 404 page not found",
-  };
+app.use("/api/v1/task", taskRouter);
 
+//handle all uncaught router request
+app.use("*", (req, res, next) => {
+  const error = {
+    code: 404,
+    message: "404 Page Not Found!",
+  };
   next(error);
 });
-//global error Hadeler
 
+// global error handeler
 app.use((error, req, res, next) => {
-  const statusCode = error.body || 500;
+  const statusCode = error.code || 500;
   res.status(statusCode).json({
     status: "error",
     message: error.message,

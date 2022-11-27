@@ -27,7 +27,7 @@ the object should be in the following structure `{task:'',type:""}`|
 
 |2.| |'/'||GET | |false ||this api allows client to fetch all the task from database|
 
-|3.| |'/'||PATCH| |false ||this api allows client to switch all the task from database|
+|3.| |'/'||PATCH| |false ||this api allows client to switch all the task from database,client mustt srnd data in the following structre `{_id:"dsds,type"bad or entry"}`|
 
 |4.| |`/:\_id`||Detete| |false ||this api allows client to delete a task based on the given id form databse|
 
